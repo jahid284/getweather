@@ -4,7 +4,8 @@
   "description": "basic react app",
   "main": "index.js",
   "scripts": {
-    "test": "Hello react"
+    "test": "Hello react",
+    "start": "node server.js"
   },
   "keywords": [
     "react"
