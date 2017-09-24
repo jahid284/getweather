@@ -12462,7 +12462,7 @@ var Examples = function Examples(props) {
   return React.createElement(
     'h3',
     null,
-    'Exampless component'
+    'Examples component'
   );
 };
 
