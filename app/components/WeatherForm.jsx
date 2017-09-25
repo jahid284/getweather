@@ -11,9 +11,9 @@ const WeatherForm = React.createClass({
   },
   render: function(){
     return(
-        <form onSubmit={this.onFormSubmit}>
-          <input type="text" ref="location"/>
-          <button type="submit">Get Weather</button>
+        <form onSubmit={this.onFormSubmit} className="text-center">
+          <input type="text" className="form-control" ref="location"/>
+          <button type="submit" className="btn btn-primary">Get Weather</button>
         </form>
     );
   }

@@ -2,6 +2,7 @@ const React = require('react');
 const WeatherForm = require('WeatherForm');
 const WeatherMessage = require('WeatherMessage');
 const OpenWeatherMap = require('OpenWeatherMap');
+const ErrorModal = require('ErrorModal');
 
 const Weather = React.createClass({
   getInitialState: function() {
@@ -34,7 +35,7 @@ const Weather = React.createClass({
       }
     }
     return(
-      <section className="weather-section">
+      <section className="weather-section text-center">
         <h2>Get Weather</h2>
         <WeatherForm onSearch={this.handleSearch}/>
         {renderMessage()}

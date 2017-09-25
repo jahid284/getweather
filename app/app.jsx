@@ -5,6 +5,8 @@ const Main = require('Main');
 const About = require('About');
 const Weather = require('Weather');
 const Examples = require('Examples');
+//Load bootstrap
+require('style-loader!css-loader!bootstrap/dist/css/bootstrap.min.css');
 ReactDOM.render(
   <Router>
     <div>

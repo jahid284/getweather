@@ -1,7 +1,9 @@
 const React = require('react');
 const About = (props) =>{
   return(
-    <h3>About component</h3>
+    <section className="about-page text-center">
+      <h3>About Page</h3>
+    </section>
   );
 }
 
