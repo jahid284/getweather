@@ -12460,9 +12460,26 @@ module.exports = Cancel;
 var React = __webpack_require__(6);
 var Examples = function Examples(props) {
   return React.createElement(
-    'h3',
-    null,
-    'Examples component'
+    "div",
+    { className: "examples" },
+    React.createElement(
+      "h3",
+      null,
+      "Examples component"
+    ),
+    React.createElement(
+      "ol",
+      null,
+      React.createElement(
+        "li",
+        null,
+        React.createElement(
+          Link,
+          { to: "/?q=Dhaka,BD" },
+          "Dhaka"
+        )
+      )
+    )
   );
 };
 
