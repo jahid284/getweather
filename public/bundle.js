@@ -7827,6 +7827,8 @@ module.exports = getEventCharCode;
 "use strict";
 
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var React = __webpack_require__(5);
 var WeatherForm = __webpack_require__(251);
 var WeatherMessage = __webpack_require__(252);
@@ -7843,23 +7845,29 @@ var Weather = React.createClass({
   },
   handleSearch: function handleSearch(location) {
     var that = this;
-    this.setState({ isLoading: true });
+    this.setState({
+      isLoading: true,
+      errorModalMessage: undefined
+    });
     OpenWeatherMap.getTemp(location).then(function (temp) {
       that.setState({
         location: location,
         temp: temp,
         isLoading: false
       });
-    }, function (ErrorMessage) {
-      that.setState({ isLoading: false });
-      alert(ErrorMessage);
+    }, function (e) {
+      that.setState(_defineProperty({
+        isLoading: true,
+        errorModalMessage: e.message
+      }, 'isLoading', false));
     });
   },
   render: function render() {
     var _state = this.state,
         isLoading = _state.isLoading,
         location = _state.location,
-        temp = _state.temp;
+        temp = _state.temp,
+        errorModalMessage = _state.errorModalMessage;
 
     function renderMessage() {
       if (isLoading) {
@@ -7872,6 +7880,13 @@ var Weather = React.createClass({
         return React.createElement(WeatherMessage, { location: location, temp: temp });
       }
     }
+
+    function renderModalMessage() {
+      if (typeof errorModalMessage === 'string') {
+        return React.createElement(ErrorModal, null);
+      }
+    }
+
     return React.createElement(
       'section',
       { className: 'weather-section text-center' },
@@ -7881,7 +7896,8 @@ var Weather = React.createClass({
         'Get Weather'
       ),
       React.createElement(WeatherForm, { onSearch: this.handleSearch }),
-      renderMessage()
+      renderMessage(),
+      renderModalMessage()
     );
   }
 });
@@ -12579,7 +12595,7 @@ var About = __webpack_require__(107);
 var Weather = __webpack_require__(66);
 var Examples = __webpack_require__(113);
 //Load bootstrap
-__webpack_require__(274);
+__webpack_require__(275);
 ReactDOM.render(React.createElement(
   _reactRouterDom.HashRouter,
   null,
@@ -28869,35 +28885,53 @@ module.exports = function spread(callback) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function($) {
 
 var React = __webpack_require__(5);
 var ErrorModal = React.createClass({
-  displayName: "ErrorModal",
+  displayName: 'ErrorModal',
 
+  componentDidMount: function componentDidMount() {
+    $('#mySmallModal').modal('show');
+  },
   render: function render() {
     return React.createElement(
-      "div",
-      { "class": "modal fade", id: "exampleModal", tabindex: "-1", role: "dialog", "aria-labelledby": "exampleModalLabel", "aria-hidden": "true" },
+      'div',
+      { className: 'modal fade bd-example-modal-sm', id: 'mySmallModal', tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'mySmallModalLabel', 'aria-hidden': 'true' },
       React.createElement(
-        "h3",
-        null,
-        "No city found"
+        'div',
+        { className: 'modal-dialog modal-sm' },
+        React.createElement(
+          'div',
+          { className: 'modal-content' },
+          React.createElement(
+            'h4',
+            null,
+            'Found no city'
+          )
+        )
       )
     );
   }
 
 });
 module.exports = ErrorModal;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(274)))
 
 /***/ }),
 /* 274 */
+/***/ (function(module, exports) {
+
+module.exports = jQuery;
+
+/***/ }),
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(275);
+var content = __webpack_require__(276);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -28905,7 +28939,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(277)(content, options);
+var update = __webpack_require__(278)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -28922,10 +28956,10 @@ if(false) {
 }
 
 /***/ }),
-/* 275 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(276)(undefined);
+exports = module.exports = __webpack_require__(277)(undefined);
 // imports
 
 
@@ -28936,7 +28970,7 @@ exports.push([module.i, "/*!\n * Bootstrap v4.0.0-beta (https://getbootstrap.com
 
 
 /***/ }),
-/* 276 */
+/* 277 */
 /***/ (function(module, exports) {
 
 /*
@@ -29018,7 +29052,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 277 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -29064,7 +29098,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(278);
+var	fixUrls = __webpack_require__(279);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -29377,7 +29411,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 278 */
+/* 279 */
 /***/ (function(module, exports) {
 
 
